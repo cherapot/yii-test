@@ -1,0 +1,25 @@
+.user-favorites {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2em;
+    text-decoration: none;
+}
+
+.user-favorites:hover {
+    text-decoration: none;
+    -webkit-filter: brightness(120%);
+    filter: brightness(120%);
+}
+
+.icon-favorites {
+
+}
+
+.icon-favorites[data-state="empty"]::after{
+    content: '\2606';
+}
+
+.icon-favorites[data-state="active"]::after{
+    content: '\2605';
+}
