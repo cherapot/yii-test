@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Realty;
+use Kint;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -139,5 +141,34 @@ class SiteController extends Controller
         } else {
             echo 'false';
         }
+    }
+
+    /**
+     *
+     */
+    public function actionFavorites()
+    {
+        $query = Realty::find()
+            ->select(['realty.id'])
+//            ->innerJoin('favorites', '`favorites`.`realtyId` = `realty`.`id`')
+//            ->where(['favorites.userId' => '2'])
+//            ->with('favorites')
+//            ->asArray()
+//            ->all();
+            ->innerJoin('favorites', '`realty`.`id` = `favorites`.`realtyId`')
+            ->where(['favorites.userId' => '1'])
+            ->asArray()
+            ->all();
+//SELECT r.*
+//
+//FROM realty r
+//
+//LEFT JOIN favorites f ON r.id = f.realtyId
+//
+//WHERE f.userId = 1
+//    ;
+        print_r($query);
+        echo '<br>';
+        Kint::dump($query);
     }
 }
